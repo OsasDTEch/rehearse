@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { font-family: 'Atkinson Hyperlegible', system-ui, sans-serif; }
+body { @apply bg-paper text-ink; }
+
+/* Respect reduced motion everywhere; the app barely animates by design. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+.focusable:focus-visible {
+  outline: 3px solid #3F6B5E;
+  outline-offset: 3px;
+  border-radius: 0.75rem;
+}
