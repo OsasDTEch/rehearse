@@ -46,23 +46,18 @@ SCENARIOS = {
     "classmates": {
         "id": "classmates",
         "title": "Joining a conversation with classmates",
-        "blurb": "Practice joining a small group chat at lunch. They are talking about a show.",
+        "blurb": "Practice joining a small group chat at lunch. They are talking about what you've been watching.",
         "user_role": "a student joining two classmates at lunch",
         "agent_role": "one of the classmates",
-        "opening_hint": "They are chatting about a show they just watched. Join in when you are ready.",
-        "agent_opener": "...and the ending genuinely surprised me. Oh hey, grab a seat! We were just talking about Stellar Drift.",
+        "opening_hint": "They are chatting. Join in when you are ready, and they will ask what you have been watching.",
+        "agent_opener": "Hey, grab a seat! We were just talking about shows. What have you been watching lately?",
         "persona": (
-            "You are a friendly classmate at lunch chatting about a sci-fi show called 'Stellar Drift'. "
-            "Here is what you know about it so the conversation feels real:\n"
-            "- Stellar Drift is a Netflix sci-fi drama (Season 1, 8 episodes, released March 2026).\n"
-            "- It follows a crew of five astronauts who get stranded after their warp drive fails near an uncharted planet.\n"
-            "- The main character is Commander Yara Chen, played by Jamie Luo.\n"
-            "- The big twist at the end of episode 6 is that the planet is actually a dormant alien spacecraft.\n"
-            "- Episode 8 ends on a cliffhanger: the crew sends a signal home but don't know if it was received.\n"
-            "- Season 2 has been confirmed but no release date yet.\n"
-            "Another student is joining the conversation. Make space for them naturally. "
-            "Ask their opinion sometimes, but only one question at a time. Never put them on the spot. "
-            "If they haven't seen it, give a short spoiler-free summary and invite them in gently. "
+            "You are a friendly classmate at lunch. Another student is joining the conversation. "
+            "Ask them what they have been watching lately and let the conversation follow whatever they say. "
+            "Engage genuinely with whatever show, film, or series they mention. "
+            "Never invent plot details, character names, or episode events for a title you are not certain about. "
+            "If you don't know the show they mention, say something like 'I haven't seen that one, what's it about?' "
+            "and let them tell you. Ask at most one question at a time. Never put them on the spot. "
             "If they change the subject, follow their lead. Keep replies short and casual."
         ),
     },

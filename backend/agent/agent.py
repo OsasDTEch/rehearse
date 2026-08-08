@@ -51,16 +51,9 @@ GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 DEEPGRAM_STT_MODEL = os.getenv("DEEPGRAM_STT_MODEL", "flux-general-en")
 DEEPGRAM_TTS_MODEL = os.getenv("DEEPGRAM_TTS_MODEL", "aura-2-thalia-en")
 
-# Deepgram TTS base URLs — normal speed and slow mode (0.75x)
-_DG_TTS_BASE = "https://api.deepgram.com/v1/speak"
-_DG_TTS_BASE_SLOW = "https://api.deepgram.com/v1/speak?speed=0.75"
 
-
-def _make_tts(slow: bool = False) -> deepgram.TTS:
-    return deepgram.TTS(
-        model=DEEPGRAM_TTS_MODEL,
-        base_url=_DG_TTS_BASE_SLOW if slow else _DG_TTS_BASE,
-    )
+def _make_tts() -> deepgram.TTS:
+    return deepgram.TTS(model=DEEPGRAM_TTS_MODEL)
 
 
 class RehearseAgent(Agent):
@@ -141,7 +134,7 @@ async def entrypoint(ctx: JobContext):
     session = AgentSession(
         stt=deepgram.STTv2(model=DEEPGRAM_STT_MODEL),
         llm=lk_llm.FallbackAdapter([primary_llm, fallback_llm]),
-        tts=_make_tts(slow=False),
+        tts=_make_tts(),
         vad=silero.VAD.load(),
         turn_detection="stt",  # Flux provides end-of-turn events
     )
@@ -163,16 +156,12 @@ async def entrypoint(ctx: JobContext):
             session.input.set_audio_enabled(True)
         elif action == "slower":
             agent.slow_mode = True
-            # Swap to the slow TTS instance so the speed change takes effect immediately
-            session.tts = _make_tts(slow=True)
-            session.say("Sure. I'll slow down.")
+            session.say("Sure. I'll slow down and keep things shorter.")
         elif action == "agent_start":
             session.say(SCENARIOS[scenario_id]["agent_opener"])
         elif action == "restart":
             agent.safe_mode = False
             agent.slow_mode = False
-            # Restore normal TTS speed on restart
-            session.tts = _make_tts(slow=False)
             session.interrupt()
             asyncio.create_task(agent.update_instructions(instructions))
             asyncio.create_task(agent.publish_state({"type": "safe_mode", "active": False}))
