@@ -1,5 +1,9 @@
 # Rehearse
 
+**Demo video:** [https://vimeo.com/1216609260](https://vimeo.com/1216609260)
+
+**Live demo:** [https://rehearse.duckdns.org](https://rehearse.duckdns.org)
+
 A judgment free voice agent for practicing everyday conversations out loud, at your own pace. Built for the IncludAI Neurodiversity Hackathon, Track 2 (AI for Connection and Wellbeing).
 
 **The promise:** you control the pace, always. Pause, slow down, restart, or stop at any moment. A safety layer written in code (not left to the LLM) drops the agent out of character the instant you signal distress.
